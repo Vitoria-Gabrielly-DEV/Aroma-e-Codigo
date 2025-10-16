@@ -1,0 +1,549 @@
+/* ===================================
+   1. VARIÁVEIS GLOBAIS (:root) 
+   Requisito 5: Paleta com 4 cores principais
+=================================== */
+:root {
+    /* Paleta de Cores */
+    --cor-principal: #4C3B4D;      /* Escuro: Ex: Fundo, Texto */
+    --cor-destaque: #9C6A6E;       /* Destaque: Ex: Botões, Links Hover */
+    --cor-fundo-claro: #EAE0D5;    /* Fundo: Ex: Background da página */
+    --cor-texto-claro: #C1AC9E;    /* Complementar: Ex: Footer, Linhas */
+
+    /* Tipografia */
+    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-corpo: 'Lato', sans-serif;
+
+    /* Tamanhos e Espaçamentos Comuns */
+    --espacamento-padrao: 1.5rem;
+    --borda-arredondada: 0.5rem;
+}
+
+
+/* ===================================
+   2. RESET BÁSICO E CONFIGURAÇÃO
+=================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Essencial para o Flexbox funcionar perfeitamente! */
+}
+
+body {
+    font-family: var(--fonte-corpo);
+    line-height: 1.6;
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-principal);
+}
+
+/* Links globais */
+a {
+    text-decoration: none;
+    color: var(--cor-destaque);
+    transition: color 0.3s ease; 
+}
+
+a:hover {
+    color: var(--cor-principal);
+}
+
+/* Container de largura máxima para centralizar o conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--espacamento-padrao);
+}
+
+/* Títulos globais */
+h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--cor-principal);
+}
+
+/* ===================================
+   3. NAVEGAÇÃO E HEADER
+=================================== */
+header {
+    background-color: var(--cor-principal);
+    padding: var(--espacamento-padrao) 4rem; 
+    
+    /* FLEXBOX: Alinha logo e menu lado a lado */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    color: var(--cor-fundo-claro); 
+}
+
+.menu-principal ul {
+    list-style: none; 
+    display: flex; /* Alinha os itens em linha */
+    gap: 2rem; 
+}
+
+.menu-principal a {
+    color: var(--cor-fundo-claro);
+    font-weight: 400;
+    padding: 0.5rem 0; 
+    transition: color 0.3s ease;
+}
+
+.menu-principal a:hover {
+    color: var(--cor-destaque); 
+}
+
+/* ===================================
+   4. COMPONENTES REUTILIZÁVEIS (BOTÕES)
+=================================== */
+.btn {
+    display: inline-block; 
+    padding: 0.8rem 2rem;
+    border-radius: var(--borda-arredondada);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-principal {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal); 
+}
+
+.btn-principal:hover {
+    background-color: var(--cor-principal); 
+    color: var(--cor-fundo-claro);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================
+   5. SEÇÃO HERO (index.html)
+=================================== */
+.hero {
+    min-height: 80vh; 
+    
+    /* Configuração da Imagem de Fundo (Requisito Imagem - Nome Fictício) */
+    background: linear-gradient(rgba(76, 59, 77, 0.6), rgba(76, 59, 77, 0.6)), 
+                url('../img/hero-bg.jpg') no-repeat center center/cover;
+    
+    /* Se a imagem falhar, o fundo escuro do gradiente garante a legibilidade */
+    
+    /* FLEXBOX: Centraliza o conteúdo */
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.hero-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 3.5rem;
+    color: var(--cor-fundo-claro); /* Usando variável clara */
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitulo {
+    font-size: 1.5rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================================
+   6. SEÇÃO DESTAQUES/CARDS (index.html)
+   Requisito 3 e 5: Destaques em cards (mín. 3) em flex.
+=================================== */
+.destaques {
+    padding: 4rem var(--espacamento-padrao);
+    background-color: white; /* Fundo branco para destacar do body */
+    text-align: center;
+}
+
+.cards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    /* FLEXBOX CRUCIAL: Distribui os cards na linha */
+    display: flex;
+    justify-content: space-around; /* Distribui o espaço entre os cards */
+    gap: 2rem; /* Espaço entre os cards */
+}
+
+.card {
+    flex-basis: 30%; /* Garante que cada card ocupe cerca de 1/3 do container */
+    background-color: var(--cor-fundo-claro);
+    border-radius: var(--borda-arredondada);
+    overflow: hidden; /* Garante que a imagem se ajuste à borda do card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding-bottom: var(--espacamento-padrao);
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efeito sutil para destaque */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px; /* Altura fixa para consistência visual */
+    object-fit: cover; /* Recorta a imagem para preencher (Requisito: Otimizar imagens) */
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque);
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+}
+
+.card p {
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.card-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--cor-destaque);
+    color: var(--cor-destaque);
+    border-radius: var(--borda-arredondada);
+    font-weight: 700;
+}
+
+.card-link:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-fundo-claro);
+}
+
+/* ===================================
+   7. FOOTER
+=================================== */
+footer {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-claro);
+    padding: 3rem 4rem;
+    font-size: 0.9rem;
+}
+
+.container-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-info, .footer-social {
+    flex: 1;
+}
+
+.footer-info p {
+    margin: 0.5rem 0;
+}
+
+.footer-social {
+    text-align: right;
+}
+
+.footer-social a {
+    color: var(--cor-fundo-claro);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--cor-destaque);
+}
+
+footer h4 {
+    font-family: var(--fonte-titulo);
+    margin-bottom: 1rem;
+    color: var(--cor-fundo-claro);
+}
+/* ===================================
+   8. ESTILOS DE PÁGINAS INTERNAS (sobre.html e contato.html)
+=================================== */
+
+/* Hero para páginas internas */
+.page-hero {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo-claro);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-content {
+    padding: 3rem 0;
+}
+
+.section-content h2 {
+    /* Herda o estilo global de h2 */
+    margin-bottom: 1.5rem;
+}
+
+.section-content h3 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque);
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 0 var(--espacamento-padrao);
+    text-align: left; /* Centraliza apenas h2 */
+}
+
+/* Fundo alternativo para criar contraste entre as seções */
+.section-alt {
+    background-color: var(--cor-fundo-claro);
+    border-top: 1px solid var(--cor-texto-claro);
+    border-bottom: 1px solid var(--cor-texto-claro);
+}
+
+/* Estilo para a Lista de Cafés */
+.lista-cafe {
+    list-style: none; /* Remove o marcador padrão */
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.lista-cafe li {
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--cor-destaque);
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+.lista-cafe li i {
+    color: var(--cor-destaque);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Estilo para a Tabela */
+.tabela-planos {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto 3rem auto;
+    border-collapse: collapse; /* Remove o espaço entre as bordas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.tabela-planos caption {
+    font-family: var(--fonte-titulo);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--cor-principal);
+}
+
+.tabela-planos th, .tabela-planos td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid var(--cor-texto-claro);
+}
+
+.tabela-planos thead {
+    background-color: var(--cor-destaque);
+    color: white;
+}
+
+.tabela-planos tbody tr:nth-child(even) {
+    background-color: #f7f3f1; /* Linhas alternadas para melhor leitura */
+}
+
+.tabela-planos tbody tr:hover {
+    background-color: #f0e9e5;
+    transition: background-color 0.3s ease;
+}
+
+.tabela-planos tfoot {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo-claro);
+    font-style: italic;
+    text-align: center;
+}
+/* ===================================
+   9. ESTILOS DA PÁGINA DE CONTATO (contato.html)
+   Utilizando Flexbox/Grid para layout de colunas
+=================================== */
+
+.contato-grid {
+    display: flex; /* FLEXBOX: Cria as colunas de contato */
+    gap: 4rem;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+}
+
+.info-contato, .formulario-contato {
+    flex: 1; /* Faz com que as duas colunas ocupem o mesmo espaço */
+}
+
+/* Informações de Contato */
+.endereco-ficticio p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.endereco-ficticio i {
+    color: var(--cor-destaque);
+    margin-right: 0.5rem;
+}
+
+/* Mapa */
+.mapa-container {
+    margin-top: 2rem;
+    border: 1px solid var(--cor-texto-claro);
+    border-radius: var(--borda-arredondada);
+    overflow: hidden;
+}
+
+.mapa-container h3 {
+    padding: 1rem;
+    background-color: var(--cor-destaque);
+    color: white;
+    font-family: var(--fonte-titulo);
+    text-align: center;
+    margin: 0;
+}
+
+.mapa-container iframe {
+    display: block; /* Garante que o iframe ocupe o espaço total */
+}
+
+/* Formulário */
+.form-group {
+    margin-bottom: var(--espacamento-padrao);
+}
+
+.form-group label {
+    display: block; /* Faz o label ocupar a largura total, colocando o input na linha de baixo */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--cor-principal);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-texto-claro);
+    border-radius: 0.25rem;
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    resize: vertical; /* Permite redimensionamento vertical na textarea */
+}
+
+/* Garantir que o botão no formulário tenha margem superior */
+.formulario-contato .btn {
+    margin-top: 1rem;
+    width: 100%; /* Botão em largura total no formulário */
+}
+
+/* ===================================
+   10. MEDIA QUERIES (DESAFIO BÔNUS - INÍCIO)
+=================================== */
+
+/* Ajustes para telas menores (ex: tablets e celulares em paisagem) */
+@media (max-width: 1024px) {
+    header {
+        padding: var(--espacamento-padrao) 2rem;
+    }
+
+    .cards-container {
+        flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+        justify-content: center;
+    }
+    
+    .card {
+        flex-basis: 45%; /* Ocupa 45% para caberem dois por linha em tablets */
+        margin-bottom: var(--espacamento-padrao);
+    }
+
+    .contato-grid {
+        flex-direction: column; /* Em telas menores, as colunas viram linhas */
+        gap: 2rem;
+    }
+}
+
+/* Ajustes para telas muito pequenas (ex: celulares) */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column; /* Coloca logo e menu um abaixo do outro */
+        text-align: center;
+    }
+
+    .menu-principal {
+        margin-top: 1rem;
+    }
+
+    .menu-principal ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .logo {
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-titulo {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitulo {
+        font-size: 1.2rem;
+    }
+    
+    .cards-container {
+        padding: 0 1rem;
+    }
+
+    .card {
+        flex-basis: 90%; /* Ocupa a largura quase total em celulares */
+    }
+
+    .container-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-social {
+        margin-top: 1rem;
+    }
+    
+    .footer-social a {
+        margin: 0 0.5rem;
+    }
+
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+}
